@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Summer of Code 2013"
+date: 2013-05-28 12:35
+comments: true
+categories: GSoC Update RTEMS
+---
+{% img /images/gsoc_2013.jpg %}
+
+Google published summer of code results yesterday. I am happy that I was selected. My project is titled __Better GDB support for RTEMS__, it is mentored by _Ms. Jennifer Averett_ from RTEMS. You can find [my proposal here](http://www.google-melange.com/gsoc/proposal/review/google/gsoc2013/dhananjay/35002).

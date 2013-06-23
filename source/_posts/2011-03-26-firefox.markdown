@@ -1,0 +1,17 @@
+---
+author: dhananjayishere
+comments: true
+date: 2011-03-26 20:58:00
+layout: post
+slug: firefox
+title: Firefox 4
+wordpress_id: 47448980
+categories: Debian 'Free software'
+---
+
+[![Firefox](http://dbalan.files.wordpress.com/2011/03/144e7-firefox.png)](http://dbalan.files.wordpress.com/2011/03/144e7-firefox.png)
+
+Its been three days Firefox 4 released, and I am still using the beta,
+What a shame? Update!!
+
+Debian users, FInd your cutie pie iceweasel 4 Here : [http://mozilla.debian.net/](http://mozilla.debian.net/)

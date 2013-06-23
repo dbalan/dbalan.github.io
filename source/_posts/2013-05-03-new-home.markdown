@@ -1,0 +1,16 @@
+---
+layout: post
+title: "New Home"
+date: 2013-05-03 21:01
+comments: true
+categories:
+- Posterous
+- Update
+- Octopress
+---
+
+I loved posterous. I don't know how I missed it but till the final day I had no clue they were shutting down. It was an hour of panic. I had every itch not to go back to wordpress. It was bloated and just not my thing, and Jekyll was way to much work!
+
+Then I found Octopress - just the right thing, simply perfect. And it was love at first sight. :)
+
+Welcome to my new home, [Backtrace](http://dbalan.github.io)

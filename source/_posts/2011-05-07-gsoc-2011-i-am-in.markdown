@@ -1,0 +1,20 @@
+---
+author: dhananjayishere
+comments: true
+date: 2011-05-07 10:52:33
+layout: post
+slug: gsoc-2011-i-am-in
+title: GSoC 2011, I am in.
+wordpress_id: 52138307
+categories:
+- Free software
+- GSoC
+- Thoughts
+---
+
+I am too lazy to do anything these days, it took a long time to get over all that mind set. Sorry for not posting this guys,
+I have been selected to this years Google Summer Of Code Program, Under Google Open Source Programs Office,
+
+This is my proposal
+
+[http://www.google-melange.com/gsoc/proposal/review/google/gsoc2011/dhananjay/1](http://www.google-melange.com/gsoc/proposal/review/google/gsoc2011/dhananjay/1)
