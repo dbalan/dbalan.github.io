@@ -19,20 +19,21 @@ The easy way to do this is using any windowing tool kits around, they all have a
 
 You can get the keys from
 
-> pressed_keys = pygame.key.get_pressed()
-
+{% codeblock lang:python %}
+pressed_keys = pygame.key.get_pressed()
+{% endcodeblock %}
 and the key name as
 
->
->
->     for key_constant in pressed_keys:  key_name = pygame.key.name(key_constant)
-
+{% codeblock lang:python %}
+for key_constant in pressed_keys:  
+    key_name = pygame.key.name(key_constant)
+{% endcodeblock %}
 
 Then its just a matter of comparing them with the key name,( of arrow keys in our case).
 
-> if key_constant == 'up':
->
-> port.write(_up_data)
+{% codeblock lang:python %}
+if key_constant == 'up':
+    port.write(_up_data)
+{% endcodeblock %}
 
-
-The complete code is available at, [https://github.com/dhananjaynav/Scripts/blob/master/castalia/helicontrol.py](https://github.com/dhananjaynav/Scripts/blob/master/castalia/helicontrol.py)
+The complete code is available in [github](https://github.com/dhananjaynav/Scripts/blob/master/castalia/helicontrol.py)
