@@ -29,7 +29,7 @@ The actuall steps are documented here - [rtems-source-builder documentation][1],
 $ cd
 $ mkdir -p development/rtems/src
 $ cd development/rtems/src
-$ git clone git://git.rtems.org/chrisj/rtems-source-builder.git
+$ git clone git://git.rtems.org/rtems-source-builder.git
 $ cd rtems-source-builder
 ```
 - Check environment.
@@ -95,5 +95,6 @@ Hello RTEMS World
 Dhananjay Balan
 *** END OF HELLO WORLD TEST ***
 ```
-
+*Update*: Newer versions of RSB builds RTEMS automatically, no manual intervention needed. You can skip this step altogether.
+ 
 [1]: http://www.rtems.org/ftp/pub/rtems/people/chrisj/source-builder/source-builder.html "rtems-source-builder documentation"
