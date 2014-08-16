@@ -4,12 +4,12 @@ comments: true
 date: 2011-04-20 11:56:22
 layout: post
 slug: happy
-title: hap·py
+title: happy
 wordpress_id: 50200868
 categories: Friends Thoughts
 ---
 
-[hap-ee] –adjective, -pi·er, -pi·est.
+[hap-ee] adjective, -pier, -piest.
 1.delighted, pleased, or glad, as over a particular thing: to be happy to see a person.
 
 2.characterized by or indicative of pleasure, contentment, or joy: a happy mood; a happy frame of mind.
