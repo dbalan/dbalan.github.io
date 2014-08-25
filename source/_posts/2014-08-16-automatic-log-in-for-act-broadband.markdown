@@ -13,5 +13,14 @@ In my openion [ACT](http://portal.acttv.in) is the best ISP in [Bangalore](http:
 
 I have this script running in my router so that I never have to bother logging in.
 
-{% gist 0ebf80b23a59cb4c4fb0 %}
+```bash
+#!/bin/bash
+
+USERNAME=""
+PASSWORD=""
+
+curl --data 'act_username=${USERNAME}&act_password=${PASSWORD}&login=login' \
+  http://portal.acttv.in -o /dev/null
+```
+
 
