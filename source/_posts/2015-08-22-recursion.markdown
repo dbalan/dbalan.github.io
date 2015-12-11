@@ -6,7 +6,7 @@ comments: true
 categories:
 - haskell
 - recursion
-- fbonacci numbers
+- fibonacci numbers
 ---
 
 ```haskell
