@@ -25,7 +25,7 @@ Language was a barrier. Malayalm has become a bit more cumbersome to process. I 
 
 I found that out during my ten minute pitch of [Nemo’s Bug bounty for homeopathy](http://captnemo.in/homeopathy/). I had to switch languages - which I'm afraid got interpreted as an elitist talk. Anyway, it did produce results. I got to meet [Dr. Manoj Komet](https://www.researchgate.net/profile/Manoj_Komath) who has written [many articles against homeopathy](http://yukthiyugam.com/tag/manoj-komath/) and state of health sciences in general. I am going to go through all the content he pointed out and do something about it.
 
-I got one more donor for bug bounty as well. :-)
+I got [one more donor for bug bounty](https://github.com/captn3m0/captn3m0.github.com/pull/8) as well. :-)
 
 These were my favourite talks from SL -
 
