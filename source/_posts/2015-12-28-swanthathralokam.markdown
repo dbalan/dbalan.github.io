@@ -40,7 +40,7 @@ _I was told that recordings will be uploaded to youtube soon. Will try to link t
 
 There was an open forum  on _"Family and rationality"_. I felt it contained way too much anecdotal statements (of kind “I have this experience so I support this worldview of family”). It was also loosely structured, making it a bit difficult to follow. I guess that's the difference between a debate and an open forum(?). I don't think it helped me much. I would have been much happier with a proper debate with bit more moderation. The gender parity was at the forum was another concern. There were fewer women speakers.
 
-Last but not least, I did encounter some cool tech in the conference venue. The org team, [Rahul](https://www.facebook.com/2ar.rahul), [Abhay](https://www.facebook.com/abhai.sasidharan), and [Akhil](https://www.facebook.com/profile.php?id=100009322327244&fref=ts) setup a [live feed using gstreamer](https://gist.github.com/ar-rahul/50b5044aca38918223e7). They used UDP multicast to stream the feed to monitors in surrounding buildings. It worked very well, except for a bit noisy audio signal due to poor earthing.
+Last but not least, I did encounter some cool tech in the conference venue. The org tech team, [Rahul](https://www.facebook.com/2ar.rahul), [Abhay](https://www.facebook.com/abhai.sasidharan), and [Akhil](https://www.facebook.com/profile.php?id=100009322327244&fref=ts) setup a [live feed using gstreamer](https://gist.github.com/ar-rahul/50b5044aca38918223e7). They used UDP multicast to stream the feed to monitors in surrounding buildings. It worked very well, except for a bit noisy audio signal due to poor earthing.
 
 
 Overall, it was a nice conference,met a lot of old friends, made few new ones. perfect way to start the winter break.
