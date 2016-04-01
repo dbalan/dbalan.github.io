@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Solarized | Binary Strolls]]></title>
+  <link href="http://dbalan.github.io/blog/categories/solarized/atom.xml" rel="self"/>
+  <link href="http://dbalan.github.io/"/>
+  <updated>2016-04-01T11:56:26+05:30</updated>
+  <id>http://dbalan.github.io/</id>
+  <author>
+    <name><![CDATA[Dhananjay Balan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[My perfect terminal]]></title>
+    <link href="http://dbalan.github.io/blog/2012/11/24/my-perfect-terminal/"/>
+    <updated>2012-11-24T11:14:19+05:30</updated>
+    <id>http://dbalan.github.io/blog/2012/11/24/my-perfect-terminal</id>
+    <content type="html"><![CDATA[<ol>
+<li> Install <a href="http://www.zsh.org/">ZSH</a></li>
+<li> Install <a href="https://github.com/robbyrussell/oh-my-zsh">Oh-my-zsh</a></li>
+<li> Install <a href="http://ethanschoonover.com/solarized">solarized</a> color theme <a href="https://github.com/sigurdga/gnome-terminal-colors-solarized"><del>for gnome-terminal</del></a>. Shifted to <a href="http://software.jessies.org/terminator/">Terminator</a> with a <a href="https://github.com/chriskempson/base16">base16</a> theme.</li>
+<li> Install a <a href="https://gist.github.com/1595572">powerline patched font</a>.</li>
+<li> Set the zsh theme to <a href="https://gist.github.com/3712874">agnoster</a>.</li>
+</ol>
+
+
+<p>Happy Hacking. :&ndash;)</p>
+]]></content>
+  </entry>
+  
+</feed>

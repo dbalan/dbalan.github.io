@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: NetBSD | Binary Strolls]]></title>
+  <link href="http://dbalan.github.io/blog/categories/netbsd/atom.xml" rel="self"/>
+  <link href="http://dbalan.github.io/"/>
+  <updated>2016-04-01T11:56:26+05:30</updated>
+  <id>http://dbalan.github.io/</id>
+  <author>
+    <name><![CDATA[Dhananjay Balan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[NetBSD Chronicles.]]></title>
+    <link href="http://dbalan.github.io/blog/2012/11/22/netbsd-chronicles/"/>
+    <updated>2012-11-22T03:15:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2012/11/22/netbsd-chronicles</id>
+    <content type="html"><![CDATA[<p>To be frank I wasn&rsquo;t doing much for almost an year, got lazy as one can ever be. Today was the day to break it. Got a little push do something and I got down to do it. I was looking at BSD development for a long time, and thought this is the best time to get involved. I am a total noob at BSD, I never really used one. So it was challenging when I started to install NetBSD into an old Comapq nx6120 that was lying around. I know anyone could get to the root shell easily, with help from brilliant click and go installers, configuring and customizing was the real problem.</p>
+
+<p>Its 0300 now, and I got my laptop running NetBSD 6.0, and connected to wireless (easier than I thought &ndash; thanks to legacy hardware.)</p>
+
+<p><strong>Configuring Intel PRO/Wireless </strong></p>
+
+<p><strong> </strong>Unlike linux, BSD can include all the microcode (firmware) in the distribution itself, due the flexibility of licensing system. Reading up <em>iwi(4)</em> reveals youve to accept the EULA by setting the sysctl variable hw.iwi.accept_eula to 1</p>
+
+<p>```</p>
+
+<h1>sysctl -w hw.iwi.accept_eula=1</h1>
+
+<p>```</p>
+
+<p>The university wireless is open, so I didnt had to mess too much.</p>
+
+<p>```</p>
+
+<h1>ifconfig ssid &ldquo;SSID&rdquo; iwi0 dhclient iwi0</h1>
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+</feed>

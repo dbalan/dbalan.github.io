@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Update | Binary Strolls]]></title>
+  <link href="http://dbalan.github.io/blog/categories/update/atom.xml" rel="self"/>
+  <link href="http://dbalan.github.io/"/>
+  <updated>2016-04-01T11:56:26+05:30</updated>
+  <id>http://dbalan.github.io/</id>
+  <author>
+    <name><![CDATA[Dhananjay Balan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Summer of Code 2013]]></title>
+    <link href="http://dbalan.github.io/blog/2013/05/28/summer-of-code-2013/"/>
+    <updated>2013-05-28T12:35:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2013/05/28/summer-of-code-2013</id>
+    <content type="html"><![CDATA[<p><img src="/images/gsoc_2013.jpg"></p>
+
+<p>Google published summer of code results yesterday. I am happy that I was selected. My project is titled <strong>Better GDB support for RTEMS</strong>, it is mentored by <em>Ms. Jennifer Averett</em> from RTEMS. You can find <a href="http://www.google-melange.com/gsoc/proposal/review/google/gsoc2013/dhananjay/35002">my proposal here</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New Home]]></title>
+    <link href="http://dbalan.github.io/blog/2013/05/03/new-home/"/>
+    <updated>2013-05-03T21:01:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2013/05/03/new-home</id>
+    <content type="html"><![CDATA[<p>I loved posterous. I don&rsquo;t know how I missed it but till the final day I had no clue they were shutting down. It was an hour of panic. I had every itch not to go back to wordpress. It was bloated and just not my thing, and Jekyll was way to much work!</p>
+
+<p>Then I found Octopress &ndash; just the right thing, simply perfect. And it was love at first sight. :)</p>
+
+<p>Welcome to my new home, <a href="http://dbalan.github.io">Backtrace</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Long time.]]></title>
+    <link href="http://dbalan.github.io/blog/2011/03/21/long-time/"/>
+    <updated>2011-03-21T06:53:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2011/03/21/long-time</id>
+    <content type="html"><![CDATA[<p>Its been long time, Almost a year. Lots of things happened. Good and bad, I dont want to recollect and dump all the past here, But future, I promise you to speak about it, :&ndash;)</p>
+
+<p>Im moving to posterous from my old blog (obviously).</p>
+]]></content>
+  </entry>
+  
+</feed>

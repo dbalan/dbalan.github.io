@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: RTEMS | Binary Strolls]]></title>
+  <link href="http://dbalan.github.io/blog/categories/rtems/atom.xml" rel="self"/>
+  <link href="http://dbalan.github.io/"/>
+  <updated>2016-04-01T11:56:26+05:30</updated>
+  <id>http://dbalan.github.io/</id>
+  <author>
+    <name><![CDATA[Dhananjay Balan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Debugging RTEMS with GDB]]></title>
+    <link href="http://dbalan.github.io/blog/2013/06/23/debugging-rtems-with-gdb/"/>
+    <updated>2013-06-23T19:40:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2013/06/23/debugging-rtems-with-gdb</id>
+    <content type="html"><![CDATA[<p>RTEMS is difficult to debug, since the default GDB behaviour follows a language based approch and developer will have to debug the application+RTEMS stack as a whole. We are in process of developing a new set of extenstions for GDB to play nice with RTEMS. The intial code is available in this <a href="https://github.com/dbalan/rtems-gdb">github repository</a>.</p>
+
+<p>To use the extenstion,
+ &ndash; Clone the repository
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git@github.com:dbalan/rtems-gdb.git
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+ &ndash; Assuming you have a working <a href="/blog/2013/05/28/getting-started-with-rtems-on-archlinux/">RTEMS toolchain</a>, spin up the GDB and source the code.
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sparc-rtems4.11-gdb&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;GNU gdb <span class="o">(</span>GDB<span class="o">)</span> 7.5.1
+</span><span class='line'>Copyright &amp;copy; 2012 Free Software Foundation, Inc.
+</span><span class='line'>License GPLv3+: GNU GPL version 3 or later &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://gnu.org/licenses/gpl.html&quot;</span>&gt;http://gnu.org/licenses/gpl.html&lt;/a&gt;
+</span><span class='line'>This is free software: you are free to change and redistribute it.
+</span><span class='line'>There is NO WARRANTY, to the extent permitted by law.  Type &amp;ldquo;show copying&amp;rdquo;
+</span><span class='line'>and &amp;ldquo;show warranty&amp;rdquo; <span class="k">for </span>details.
+</span><span class='line'>This GDB was configured as &amp;ldquo;&amp;mdash;host<span class="o">=</span>x86_64-linux-gnu &amp;mdash;target<span class="o">=</span>sparc-rtems4.11&amp;rdquo;.
+</span><span class='line'>For bug reporting instructions, please see:
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://www.gnu.org/software/gdb/bugs/&quot;</span>&gt;http://www.gnu.org/software/gdb/bugs/&lt;/a&gt;.
+</span><span class='line'><span class="o">(</span>gdb<span class="o">)</span> <span class="nb">source </span>path/to/clone/&lt;strong&gt;init&lt;/strong&gt;.py
+</span><span class='line'>RTEMS GDB Support loaded
+</span><span class='line'><span class="o">(</span>gdb<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Here is a sneak peak of what will be capable:
+<div><script src='https://gist.github.com/5428535.js'></script>
+<noscript><pre><code>(gdb) rtems object 436273153
+436273153
+API:classic Class:semaphores Node:1 Index:1 Id:1A010001
+     Name: LBIO
+     Attr: 0x00000054,local,pri,bin-sema,inherit-pri,no-pri-ceiling
+     Lock: unlocked
+  Nesting: 0
+  Blocked: 0
+   Holder: unlocked
+    Queue: len = 8, state = waiting-for-mutex
+       '0 '\000'' (c:34065256, r:34065272)  (0207cb5c)
+       '0 '\000'' (c:34065256, r:34065272)  (0207cb5c)
+       '0 '\000'' (c:34065268, r:34065284)  (0207cb68)
+       '0 '\000'' (c:34065268, r:34065284)  (0207cb68)
+       '0 '\000'' (c:34065280, r:0)  (0207cb74)
+       '0 '\000'' (c:34065280, r:0)  (0207cb74)
+       '0 '\000'' (c:1024, r:5)  (0207cb80)
+       '0 '\000'' (c:1024, r:5)  (0207cb80)
+</code></pre></noscript></div>
+
+<div><script src='https://gist.github.com/5488653.js'></script>
+<noscript><pre><code>(gdb) source __init__.py
+RTEMS GDB Support loaded
+(gdb) rtems semaphores 
+     Name: LBIO
+     Attr: 0x00000054,local,pri,bin-sema,inherit-pri,no-pri-ceiling
+     Lock: unlocked
+  Nesting: 0
+  Blocked: 0
+   Holder: unlocked
+    Queue: len = 8, state = waiting-for-mutex
+       '0 '\000'' (c:34065256, r:34065272)  (0207cb5c)
+       '0 '\000'' (c:34065256, r:34065272)  (0207cb5c)
+       '0 '\000'' (c:34065268, r:34065284)  (0207cb68)
+       '0 '\000'' (c:34065268, r:34065284)  (0207cb68)
+       '0 '\000'' (c:34065280, r:0)  (0207cb74)
+       '0 '\000'' (c:34065280, r:0)  (0207cb74)
+       '0 '\000'' (c:1024, r:5)  (0207cb80)
+       '0 '\000'' (c:1024, r:5)  (0207cb80)
+     Name: TRmi
+     Attr: 0x00000054,local,pri,bin-sema,inherit-pri,no-pri-ceiling
+     Lock: unlocked
+  Nesting: 0
+  Blocked: 0
+   Holder: unlocked
+    Queue: len = 8, state = waiting-for-mutex
+       '0 '\000'' (c:34065376, r:34065392)  (0207cbd4)
+       '0 '\000'' (c:34065376, r:34065392)  (0207cbd4)
+       '0 '\000'' (c:34065388, r:34065404)  (0207cbe0)
+       '0 '\000'' (c:34065388, r:34065404)  (0207cbe0)
+       '0 '\000'' (c:34065400, r:0)  (0207cbec)
+       '0 '\000'' (c:34065400, r:0)  (0207cbec)
+       '0 '\000'' (c:1024, r:5)  (0207cbf8)
+       '0 '\000'' (c:1024, r:5)  (0207cbf8)
+     Name: TRia
+     Attr: 0x00000054,local,pri,bin-sema,inherit-pri,no-pri-ceiling
+     Lock: unlocked
+  Nesting: 0
+  Blocked: 0
+   Holder: unlocked
+    Queue: len = 8, state = waiting-for-mutex
+       '0 '\000'' (c:34065496, r:34065512)  (0207cc4c)
+       '0 '\000'' (c:34065496, r:34065512)  (0207cc4c)
+       '0 '\000'' (c:34065508, r:34065524)  (0207cc58)
+       '0 '\000'' (c:34065508, r:34065524)  (0207cc58)
+       '0 '\000'' (c:34065520, r:0)  (0207cc64)
+       '0 '\000'' (c:34065520, r:0)  (0207cc64)
+       '0 '\000'' (c:1024, r:5)  (0207cc70)
+       '0 '\000'' (c:1024, r:5)  (0207cc70)
+     Name: TRoa
+     Attr: 0x00000054,local,pri,bin-sema,inherit-pri,no-pri-ceiling
+     Lock: unlocked
+  Nesting: 0
+  Blocked: 0
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+   Holder: unlocked
+    Queue: len = 8, state = waiting-for-mutex
+       '0 '\000'' (c:34065616, r:34065632)  (0207ccc4)
+       '0 '\000'' (c:34065616, r:34065632)  (0207ccc4)
+       '0 '\000'' (c:34065628, r:34065644)  (0207ccd0)
+       '0 '\000'' (c:34065628, r:34065644)  (0207ccd0)
+       '0 '\000'' (c:34065640, r:0)  (0207ccdc)
+       '0 '\000'' (c:34065640, r:0)  (0207ccdc)
+       '0 '\000'' (c:1024, r:5)  (0207cce8)
+       '0 '\000'' (c:1024, r:5)  (0207cce8)
+     Name: TRxa
+     Attr: 0x00000020,local,fifo,simple-bin-sema,no-inherit-pri,no-pri-ceiling
+     Lock: locked
+  Nesting: 1
+  Blocked: 0
+   Holder: 'IDLE' (c:255, r:255)
+    Queue: len = 2, state = waiting-for-mutex
+       '0 '\000'' (c:0, r:0)  (0207cd3c)
+       '0 '\000'' (c:0, r:0)  (0207cd3c)
+(gdb) 
+</code></pre></noscript></div>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Getting started with RTEMS on Archlinux]]></title>
+    <link href="http://dbalan.github.io/blog/2013/05/28/getting-started-with-rtems-on-archlinux/"/>
+    <updated>2013-05-28T21:24:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2013/05/28/getting-started-with-rtems-on-archlinux</id>
+    <content type="html"><![CDATA[<p>The default RTEMS geting started does not cover the toolchain setup as it should be. It either redirects the user to download a ~1 GB distro or some pretty old RPMs. This shouldn&rsquo;t be like this.</p>
+
+<p>There is an excellent tool called <strong><em>rtems source builder</em></strong> which can help a newbie setup RTEMS environment in a brisk. This post is the authors journal about how he did it, shared beacuse it might be beneficial to people looking to bootstrap RTEMS.</p>
+
+<p>RTEMS is a real time operating system. It works on various type of hardware, and a devlopment setup is specific to the hardware of developers choice. Here I will demonstrate setting up a sparc toolchain with b-sis simulator.</p>
+
+<h3>Setting up toolchain</h3>
+
+<p>First step of our RTEMS journey. A toolchain consists of a compiler, linker, debuggger and a simulator for the hardware. We need these tools to compile the RTEMS code and execute our programs.</p>
+
+<p>This was a painful step in past. Cross compiler environments are nasty to get right. But dont worry, we have our wonderful rtems-source-builder to rescue.</p>
+
+<p>rtems-source-builder automates the task of setting up this toolchain &ndash; it downloads the source files, builds them and installs in the system. It also have the option to make a tarball.</p>
+
+<p>The actuall steps are documented here &ndash; <a href="http://www.rtems.org/ftp/pub/rtems/people/chrisj/source-builder/source-builder.html" title="rtems-source-builder documentation">rtems-source-builder documentation</a>, but if you prefer a capsule</p>
+
+<ul>
+<li>Setup directories and get source
+<code>
+$ cd
+$ mkdir -p development/rtems/src
+$ cd development/rtems/src
+$ git clone git://git.rtems.org/rtems-source-builder.git
+$ cd rtems-source-builder
+</code></li>
+<li><p>Check environment.
+<code>
+$ ./source-builder/sb-check
+RTEMS Source Builder environment is ok
+</code></p></li>
+<li><p>Build a sparc target
+<code>
+$ cd rtems
+$ ../source-builder/sb-set-builder --log=l-sparc.txt /
+--prefix=$HOME/development/rtems/4.11 4.11/rtems-sparc
+</code>
+this will produce binaries in <code>$HOME/development/rtems/4.11</code> directory.</p></li>
+</ul>
+
+
+<p><strong>Note</strong>: Default version of makeinfo in archlinux is incomaptible with tools we build, source-builder documentations says</p>
+
+<blockquote><p>Archlinux, by default installs texinfo-5 which is incompatible for building GCC 4.7 tree. You will have to obtain texinfo-legacy from AUR and provide a manual override.</p></blockquote>
+
+<p>```</p>
+
+<h1>pacman -R texinfo</h1>
+
+<p>$ yaourt -S texinfo-legacy</p>
+
+<h1>ln -s /usr/bin/makeinfo-4.13a /usr/bin/makeinfo</h1>
+
+<p>```</p>
+
+<h3>Building RTEMS</h3>
+
+<ul>
+<li><p>First obtain the RTEMS code from github.
+<code>
+$ cd
+$ mkdir -p development/rtems/repo
+$ cd development/rtems/repo
+$ git clone git@github.com:RTEMS/rtems.git
+$ cd rtems
+</code></p></li>
+<li><p>Bootstrap the rtems and build code.
+<code>
+$ export PATH=/home/dhananjay/build/rtems/4.11/bin:$PATH
+$ ./bootstrap
+</code></p></li>
+<li><p>Build a b-sis simulator code.
+<code>
+$ cd ..
+$ mkdir b-sis &amp;&amp; cd b-sis
+$ ../rtems/configure --target=sparc-rtems4.11 --enable-rtemsbsp=sis --enable-tests=samples --enable-posix --prefix=/home/dhananjay/build/rtems/src/
+$ make
+</code></p></li>
+</ul>
+
+
+<h3>Running example code.</h3>
+
+<ul>
+<li>Find the sample applications and execute them.</li>
+</ul>
+
+
+<p>```
+$ cd sparc-rtems4.11/c/sis/testsuites/samples/hello
+$ ls</p>
+
+<p>hello.exe  hello.num  hello.ralf  init.o  Makefile
+$ sparc-rtems4.11-run hello.exe</p>
+
+<p><strong><em> GSOC HELLO WORLD TEST </em></strong>
+Hello RTEMS World
+Dhananjay Balan
+<strong><em> END OF HELLO WORLD TEST </em></strong>
+```
+<em>Update</em>: Newer versions of RSB builds RTEMS automatically, no manual intervention needed. You can skip this step altogether.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Summer of Code 2013]]></title>
+    <link href="http://dbalan.github.io/blog/2013/05/28/summer-of-code-2013/"/>
+    <updated>2013-05-28T12:35:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2013/05/28/summer-of-code-2013</id>
+    <content type="html"><![CDATA[<p><img src="/images/gsoc_2013.jpg"></p>
+
+<p>Google published summer of code results yesterday. I am happy that I was selected. My project is titled <strong>Better GDB support for RTEMS</strong>, it is mentored by <em>Ms. Jennifer Averett</em> from RTEMS. You can find <a href="http://www.google-melange.com/gsoc/proposal/review/google/gsoc2013/dhananjay/35002">my proposal here</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,710 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Binary Strolls</title>
+  <meta name="author" content="Dhananjay Balan">
+
+  
+  <meta name="description" content="I admit I am a huge Git fanatic. Infact I havent used anything else for managing the code (except some checkout from svn). I was trying to build &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://dbalan.github.io/blog/page/3">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Binary Strolls" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-22320635-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Binary Strolls</a></h1>
+  
+    <h2>Dhananjay Balan</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="https://dbalan.in">Contact</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/18/progress-bar-in-mercurial-pushpull/">Progress Bar in Mercurial Push/pull</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-18T08:26:00+05:30" pubdate data-updated="true">Mar 18<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/03/18/progress-bar-in-mercurial-pushpull/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I admit I am a huge Git fanatic. Infact I havent used anything else for managing the code (except some checkout from svn). I was trying to build <a href="http://orange.biolab.si/">orange</a>, so I wasnt very happy when I realised they use <a href="http://mercurial.selenic.com/wiki/Mercurial">mercurial</a> for the revision control (I, like all my fellow programmers is a lazy person to adapt ;&ndash;) ).</p>
+
+<p> The first problem I faced was when cloning the code (checkout, subversion guys!), by default mecurial doesnt give you any progress dialogs. It can get frustrating if you are cloning a substantially large repository.
+Good thing is mercurial from 1.5 onwards contains an extensoin for doing this, called <a href="http://mercurial.selenic.com/wiki/ProgressExtension">progress</a>. Only thng is you have to enable it explicitly.</p>
+
+<p>Note that as per the mercurial documentation,system wide hg configuration file is stored in any of the following paths,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(Unix) /etc/mercurial/hgrc
+</span><span class='line'>or
+</span><span class='line'> /etc/mercurial/hgrc.d/*.rc
+</span><span class='line'>(Windows) Mercurial.ini or(Windows) hgrc.d*.rc
+</span><span class='line'>or
+</span><span class='line'> HKEY_LOCAL_MACHINESOFTWAREMercurial</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and repositroy specific configuration in</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/.hg/hgrc [ from man hgrc ]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To enable the progress extention, Create the file if it doesnt exist and add the fllowing to it.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[extensions]progress =</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This enables the progress extention. You can define the configuration specific to this extention, by creating a sperate section in hgrc named [progress]. Information about thease options can be obtained by executing</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[dhananjay@dlab orange]$ hg help progress|head
+</span><span class='line'>
+</span><span class='line'>progress extension - show progress bars for some actionsThis extension uses the progress information logged by hg commands to drawprogress bars that are as informative as possible. Some progress bars onlyoffer indeterminate information, while others have a definite end point...</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For example if you want a progress bar with refresh time 05 second, your hgrc should be like this,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[dhananjay@dlab orange]$ cat ~/.hgrc
+</span><span class='line'>[extensions]
+</span><span class='line'>progress =
+</span><span class='line'>
+</span><span class='line'>[progress]
+</span><span class='line'>refresh = 0.5</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note: This blog is heavily inspired from <a href="http://stackoverflow.com/questions/308491/show-progress-of-mercurial-push-pull">http://stackoverflow.com/questions/308491/show-progress-of-mercurial-push-pull</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/09/arrow-keys-input-in-python/">Arrow Keys Input in Python.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-09T20:00:00+05:30" pubdate data-updated="true">Jan 9<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/01/09/arrow-keys-input-in-python/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I had an assignment to write an applicaion to control a toy helicopter. It should accept the inputs from the arrow keys and then generate a serial signal. The serial port is connected to the interfacing circutary.</p>
+
+<p>The major problem I faced was how to take arrow keys as input? Using the technical jargon &ndash; implement a non-bufferd input. A code to do it in console can be found <a href="http://code.activestate.com/recipes/134892-getch-like-unbuffered-character-reading-from-stdin/">here</a>. But its dirty and is implemented in a complex way that usage is little bit diffcult. At console level the code becomes more os-specific, as you can see from the above code. It has diffrent defenitions to implement the feature in each os.</p>
+
+<p>The easy way to do this is using any windowing tool kits around, they all have a key logging abstraction implemented. Like this <a href="http://stackoverflow.com/a/4205490">code</a>. it uses the tkinter toolkit to read input. The way I suggest is using pygame, because it is designed to this stuff. (Which game doesnt have a single use arrow key used?)</p>
+
+<p>You can get the keys from</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">pressed_keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and the key name as</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">key_constant</span> <span class="ow">in</span> <span class="n">pressed_keys</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">key_name</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">key_constant</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then its just a matter of comparing them with the key name,( of arrow keys in our case).</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="n">key_constant</span> <span class="o">==</span> <span class="s">&#39;up&#39;</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">port</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">_up_data</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The complete code is available in <a href="https://github.com/dhananjaynav/Scripts/blob/master/castalia/helicontrol.py">github</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/28/falling-slowly/">Falling Slowly.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-28T21:32:00+05:30" pubdate data-updated="true">Oct 28<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/10/28/falling-slowly/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Its a song from the movie <a href="http://www.imdb.com/title/tt0907657/">Once</a>, very beautiful one. The song was exactly
+about me. Searching for someone to hold me together, someone who will be
+there guiding the sparrow home.</p>
+
+<p>Then, I found you.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/11/latex-on-the-go/">LaTeX on the Go.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-11T15:48:00+05:30" pubdate data-updated="true">Oct 11<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/10/11/latex-on-the-go/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is just another day I thanked web 2.0, this time the story goes like this.</p>
+
+<p> I needed to prepare a LaTeX document on the go, had no laptop with me and I couldnt find one with LaTeX installed, and installing LaTeX with current internet speeds, was the unthinkable.</p>
+
+<p> I tried to settle with a word processor, but the idea hit me that I should search web, a simple search took me to <a href="http://duckduckgo.com/?q=online+latex+editors">http://duckduckgo.com/?q=online+latex+editors</a></p>
+
+<p> I selected two links from the top,
+<a href="http://monkeytex.bradcater.webfactional.com/">MonkeyTex</a> has a really simple no frills yet beautiful interface, where <a href="https://www.scribtex.com/">ScribeTex</a> offer a feature filled one. They also offer paid plans, other than a free plan which restricts you in number of projects and collaborators.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/11/ffmepg-nokia-7210-video-clips/">FFmpeg + Nokia 7210 Video Clips.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-11T09:03:00+05:30" pubdate data-updated="true">Oct 11<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/10/11/ffmepg-nokia-7210-video-clips/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Nokia 7210 supports video clips of container mp4 with following specifications.</p>
+
+<p> Video Codec: mpeg4
+Video Size: 320x240
+Bit Rate: 500
+Frame Rate: Auto
+Aspect: Auto
+Same Quality: False</p>
+
+<p> Audio:
+Audio Codec: mpeg4aac
+Bit Rate: 96
+Sample Rate: 44100
+Channels: 1 (Mono)
+Disable Audio: False</p>
+
+<p> So to make a clip playable in phone,</p>
+
+<p> Use</p>
+
+<p> <strong> ffmpeg -i <infile> -b 500 -s 320x240 -f mp4 -acodec libfaac -vcodec mpeg4 <outfile></strong></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/16/crazy/">Crazy</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-16T18:38:11+05:30" pubdate data-updated="true">Sep 16<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/09/16/crazy/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://dbalan.files.wordpress.com/2011/09/e3003-dsc_0120.jpg"><img src="http://dbalan.files.wordpress.com/2011/09/e3003-dsc_0120.jpg" alt="Dsc_0120" /></a></p>
+
+<p>Yeh, Thats me. :&ndash;)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/11/nothing-else-matters/">Nothing Else Matters.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-11T20:19:25+05:30" pubdate data-updated="true">Sep 11<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/09/11/nothing-else-matters/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code> **"Our integrity sells for so little, but it is all we really have, It is the very last inch of us.**
+</code></pre>
+
+<p><strong>But within that inch&hellip;</strong>
+<strong>&hellip; we are free.&ldquo;</strong>
+<strong>&mdash;Valerie, V For Vendetta.</strong></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/10/good-to-be-back/">Good to Be Back.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-10T22:11:46+05:30" pubdate data-updated="true">Sep 10<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/09/10/good-to-be-back/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://dbalan.files.wordpress.com/2011/09/78df1-20110910_0024_01.jpg"><img src="http://dbalan.files.wordpress.com/2011/09/78df1-20110910_0024_01.jpg" alt="20110910_0024_01" /></a></p>
+
+<p>Vacations&#8217; over, Good to be back in Trivandrum.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/30/what-you-do-when-you-get-a-free-day/">What You Do When You Get a Free Day?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-30T11:42:22+05:30" pubdate data-updated="true">Aug 30<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/08/30/what-you-do-when-you-get-a-free-day/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>By free I never meant something like a holiday you get in ages which
+exactly pumps you up. By &ldquo;free&rdquo; I meant day you dont have a clue to do
+anything. You suddenly find yourself nothing interesting to do. Gets you
+bored to the bones. A couple of people can cheer me up these times but unfortunately none
+are around.</p>
+
+<p>I hate it, because it breaks the barriers I&rsquo;ve put in mind to the past.
+On a blink, mind gets filled with everything that has happened in the
+twenty years thats me, and most of them are not good things.</p>
+
+<p>Writing never been my favorite, but its the only way left. So I am
+falling back to my little diary. Nobodys&#8217; been a good listener.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/23/sigsegv/">SIGSEGV</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-23T18:24:29+05:30" pubdate data-updated="true">Aug 23<span>rd</span>, 2011</time>
+        
+         | <a href="/blog/2011/08/23/sigsegv/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>&ldquo;Experience is the most brutal of all teachers.&rdquo;
+  &mdash; C.S Lewis
+</strong>
+Day I never gonna forget and forgiveness,
+not in my hands
+Past is it now,
+Neither change,
+You nor can deny.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/4/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/2/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/03/31/finding-a-programming-job/">Finding a Programming Job</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/14/golang-shorthand-operator-allows-accidental-shadowing-of-variable/">Go: `:=` Operator Causes Accidental Shadowing</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/28/swanthathralokam/">Swanthathralokam &#8216;15</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/01/a-random-rant/">A Random Rant</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/22/recursion/">Recursion</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Dhananjay Balan -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'binarystrolls';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

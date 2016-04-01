@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 'Free | Binary Strolls]]></title>
+  <link href="http://dbalan.github.io/blog/categories/free/atom.xml" rel="self"/>
+  <link href="http://dbalan.github.io/"/>
+  <updated>2016-04-01T11:56:26+05:30</updated>
+  <id>http://dbalan.github.io/</id>
+  <author>
+    <name><![CDATA[Dhananjay Balan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Firefox 4]]></title>
+    <link href="http://dbalan.github.io/blog/2011/03/27/firefox/"/>
+    <updated>2011-03-27T02:28:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2011/03/27/firefox</id>
+    <content type="html"><![CDATA[<p><a href="http://dbalan.files.wordpress.com/2011/03/144e7-firefox.png"><img src="http://dbalan.files.wordpress.com/2011/03/144e7-firefox.png" alt="Firefox" /></a></p>
+
+<p>Its been three days Firefox 4 released, and I am still using the beta,
+What a shame? Update!!</p>
+
+<p>Debian users, FInd your cutie pie iceweasel 4 Here : <a href="http://mozilla.debian.net/">http://mozilla.debian.net/</a></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: scripts | Binary Strolls]]></title>
+  <link href="http://dbalan.github.io/blog/categories/scripts/atom.xml" rel="self"/>
+  <link href="http://dbalan.github.io/"/>
+  <updated>2016-04-01T11:56:26+05:30</updated>
+  <id>http://dbalan.github.io/</id>
+  <author>
+    <name><![CDATA[Dhananjay Balan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Automatic log-in for ACT Broadband]]></title>
+    <link href="http://dbalan.github.io/blog/2014/08/16/automatic-log-in-for-act-broadband/"/>
+    <updated>2014-08-16T19:14:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2014/08/16/automatic-log-in-for-act-broadband</id>
+    <content type="html"><![CDATA[<p>In my openion <a href="http://portal.acttv.in">ACT</a> is the best ISP in <a href="http://en.wikipedia.org/wiki/Bangalore">Bangalore</a>, I found this network to be much better than any other provider in terms of reliability and the bandwidth, they seem very hacker friendly too, logging in as straightforward as a simple HTTP POST.</p>
+
+<p>I have this script running in my router so that I never have to bother logging in.</p>
+
+<p>```bash</p>
+
+<h1>!/bin/bash</h1>
+
+<p>USERNAME=&ldquo;&rdquo;
+PASSWORD=&ldquo;&rdquo;</p>
+
+<p>curl &mdash;data &lsquo;act_username=${USERNAME}&amp;act_password=${PASSWORD}&amp;login=login&rsquo; \
+  <a href="http://portal.acttv.in">http://portal.acttv.in</a> -o /dev/null
+```</p>
+]]></content>
+  </entry>
+  
+</feed>

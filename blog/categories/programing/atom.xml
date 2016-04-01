@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Programing | Binary Strolls]]></title>
+  <link href="http://dbalan.github.io/blog/categories/programing/atom.xml" rel="self"/>
+  <link href="http://dbalan.github.io/"/>
+  <updated>2016-04-01T11:56:26+05:30</updated>
+  <id>http://dbalan.github.io/</id>
+  <author>
+    <name><![CDATA[Dhananjay Balan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rooting a nexus 7]]></title>
+    <link href="http://dbalan.github.io/blog/2012/12/06/rooting-a-nexus-7/"/>
+    <updated>2012-12-06T23:56:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2012/12/06/rooting-a-nexus-7</id>
+    <content type="html"><![CDATA[<p>Lot of posts in the web about this is just bogus, all of them want you
+to download a fat rootkit and click on the root.exe :&ndash;/</p>
+
+<p>Being a developer device, rooting nexus 7 is easy.</p>
+
+<ol>
+<li>Gain developer privilege (figure out yourself :-P)</li>
+<li>Reboot to bootloader
+<code>
+$ adb reboot bootloader
+</code></li>
+<li>Unlock the bootloader
+<code>
+$ fastboot oem unlock # Might have to be the superuser.
+</code></li>
+<li>Download the recovery image for device from <a href="http://clockworkmod.com/rommanager">here</a>
+and flash it
+<code>
+$ fastboot flash recovery
+</code></li>
+<li>Get the <a href="http://forum.xda-developers.com/showthread.php?t=1538053">superuser binary</a>.</li>
+<li>Reboot the device and put it in the sdcard (or any storage you have,)</li>
+<li>Reboot to the recovery and flash it.
+<code>
+$ adb reboot recovery
+</code></li>
+</ol>
+
+
+<p>Note: People suggested using this to <a href="https://play.google.com/store/apps/details?id=org.projectvoodoo.otarootkeeper&amp;feature=search_result#?t=W251bGwsMSwxLDEsIm9yZy5wcm9qZWN0dm9vZG9vLm90YXJvb3RrZWVwZXIiXQ..">keep root priviliges</a> after OTA &ndash;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Progress bar in mercurial push/pull]]></title>
+    <link href="http://dbalan.github.io/blog/2012/03/18/progress-bar-in-mercurial-pushpull/"/>
+    <updated>2012-03-18T08:26:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2012/03/18/progress-bar-in-mercurial-pushpull</id>
+    <content type="html"><![CDATA[<p>I admit I am a huge Git fanatic. Infact I havent used anything else for managing the code (except some checkout from svn). I was trying to build <a href="http://orange.biolab.si/">orange</a>, so I wasnt very happy when I realised they use <a href="http://mercurial.selenic.com/wiki/Mercurial">mercurial</a> for the revision control (I, like all my fellow programmers is a lazy person to adapt ;&ndash;) ).</p>
+
+<p> The first problem I faced was when cloning the code (checkout, subversion guys!), by default mecurial doesnt give you any progress dialogs. It can get frustrating if you are cloning a substantially large repository.
+Good thing is mercurial from 1.5 onwards contains an extensoin for doing this, called <a href="http://mercurial.selenic.com/wiki/ProgressExtension">progress</a>. Only thng is you have to enable it explicitly.</p>
+
+<p>Note that as per the mercurial documentation,system wide hg configuration file is stored in any of the following paths,</p>
+
+<p><code>
+(Unix) /etc/mercurial/hgrc
+or
+ /etc/mercurial/hgrc.d/*.rc
+(Windows) Mercurial.ini or(Windows) hgrc.d*.rc
+or
+ HKEY_LOCAL_MACHINESOFTWAREMercurial
+</code>
+and repositroy specific configuration in</p>
+
+<p><code>
+/.hg/hgrc [ from man hgrc ]
+</code></p>
+
+<p>To enable the progress extention, Create the file if it doesnt exist and add the fllowing to it.
+<code>
+[extensions]progress =
+</code>
+This enables the progress extention. You can define the configuration specific to this extention, by creating a sperate section in hgrc named [progress]. Information about thease options can be obtained by executing</p>
+
+<p>```
+[dhananjay@dlab orange]$ hg help progress|head</p>
+
+<p>progress extension &ndash; show progress bars for some actionsThis extension uses the progress information logged by hg commands to drawprogress bars that are as informative as possible. Some progress bars onlyoffer indeterminate information, while others have a definite end point&hellip;
+```
+For example if you want a progress bar with refresh time 05 second, your hgrc should be like this,</p>
+
+<p>```
+[dhananjay@dlab orange]$ cat ~/.hgrc
+[extensions]
+progress =</p>
+
+<p>[progress]
+refresh = 0.5
+```</p>
+
+<p>Note: This blog is heavily inspired from <a href="http://stackoverflow.com/questions/308491/show-progress-of-mercurial-push-pull">http://stackoverflow.com/questions/308491/show-progress-of-mercurial-push-pull</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Arrow Keys input in python.]]></title>
+    <link href="http://dbalan.github.io/blog/2012/01/09/arrow-keys-input-in-python/"/>
+    <updated>2012-01-09T20:00:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2012/01/09/arrow-keys-input-in-python</id>
+    <content type="html"><![CDATA[<p>I had an assignment to write an applicaion to control a toy helicopter. It should accept the inputs from the arrow keys and then generate a serial signal. The serial port is connected to the interfacing circutary.</p>
+
+<p>The major problem I faced was how to take arrow keys as input? Using the technical jargon &ndash; implement a non-bufferd input. A code to do it in console can be found <a href="http://code.activestate.com/recipes/134892-getch-like-unbuffered-character-reading-from-stdin/">here</a>. But its dirty and is implemented in a complex way that usage is little bit diffcult. At console level the code becomes more os-specific, as you can see from the above code. It has diffrent defenitions to implement the feature in each os.</p>
+
+<p>The easy way to do this is using any windowing tool kits around, they all have a key logging abstraction implemented. Like this <a href="http://stackoverflow.com/a/4205490">code</a>. it uses the tkinter toolkit to read input. The way I suggest is using pygame, because it is designed to this stuff. (Which game doesnt have a single use arrow key used?)</p>
+
+<p>You can get the keys from</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">pressed_keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+and the key name as</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">key_constant</span> <span class="ow">in</span> <span class="n">pressed_keys</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">key_name</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">key_constant</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Then its just a matter of comparing them with the key name,( of arrow keys in our case).</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="n">key_constant</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">up</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">port</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">_up_data</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>The complete code is available in <a href="https://github.com/dhananjaynav/Scripts/blob/master/castalia/helicontrol.py">github</a></p>
+]]></content>
+  </entry>
+  
+</feed>

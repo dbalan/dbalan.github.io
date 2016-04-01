@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Python | Binary Strolls]]></title>
+  <link href="http://dbalan.github.io/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://dbalan.github.io/"/>
+  <updated>2016-04-01T11:56:26+05:30</updated>
+  <id>http://dbalan.github.io/</id>
+  <author>
+    <name><![CDATA[Dhananjay Balan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Arrow Keys input in python.]]></title>
+    <link href="http://dbalan.github.io/blog/2012/01/09/arrow-keys-input-in-python/"/>
+    <updated>2012-01-09T20:00:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2012/01/09/arrow-keys-input-in-python</id>
+    <content type="html"><![CDATA[<p>I had an assignment to write an applicaion to control a toy helicopter. It should accept the inputs from the arrow keys and then generate a serial signal. The serial port is connected to the interfacing circutary.</p>
+
+<p>The major problem I faced was how to take arrow keys as input? Using the technical jargon &ndash; implement a non-bufferd input. A code to do it in console can be found <a href="http://code.activestate.com/recipes/134892-getch-like-unbuffered-character-reading-from-stdin/">here</a>. But its dirty and is implemented in a complex way that usage is little bit diffcult. At console level the code becomes more os-specific, as you can see from the above code. It has diffrent defenitions to implement the feature in each os.</p>
+
+<p>The easy way to do this is using any windowing tool kits around, they all have a key logging abstraction implemented. Like this <a href="http://stackoverflow.com/a/4205490">code</a>. it uses the tkinter toolkit to read input. The way I suggest is using pygame, because it is designed to this stuff. (Which game doesnt have a single use arrow key used?)</p>
+
+<p>You can get the keys from</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">pressed_keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+and the key name as</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">key_constant</span> <span class="ow">in</span> <span class="n">pressed_keys</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">key_name</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">key_constant</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Then its just a matter of comparing them with the key name,( of arrow keys in our case).</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="n">key_constant</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">up</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">port</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">_up_data</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>The complete code is available in <a href="https://github.com/dhananjaynav/Scripts/blob/master/castalia/helicontrol.py">github</a></p>
+]]></content>
+  </entry>
+  
+</feed>

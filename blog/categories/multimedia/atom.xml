@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Multimedia | Binary Strolls]]></title>
+  <link href="http://dbalan.github.io/blog/categories/multimedia/atom.xml" rel="self"/>
+  <link href="http://dbalan.github.io/"/>
+  <updated>2016-04-01T11:56:26+05:30</updated>
+  <id>http://dbalan.github.io/</id>
+  <author>
+    <name><![CDATA[Dhananjay Balan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[FFmpeg + Nokia 7210 Video Clips.]]></title>
+    <link href="http://dbalan.github.io/blog/2011/10/11/ffmepg-nokia-7210-video-clips/"/>
+    <updated>2011-10-11T09:03:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2011/10/11/ffmepg-nokia-7210-video-clips</id>
+    <content type="html"><![CDATA[<p>Nokia 7210 supports video clips of container mp4 with following specifications.</p>
+
+<p> Video Codec: mpeg4
+Video Size: 320x240
+Bit Rate: 500
+Frame Rate: Auto
+Aspect: Auto
+Same Quality: False</p>
+
+<p> Audio:
+Audio Codec: mpeg4aac
+Bit Rate: 96
+Sample Rate: 44100
+Channels: 1 (Mono)
+Disable Audio: False</p>
+
+<p> So to make a clip playable in phone,</p>
+
+<p> Use</p>
+
+<p> <strong> ffmpeg -i <infile> -b 500 -s 320x240 -f mp4 -acodec libfaac -vcodec mpeg4 <outfile></strong></p>
+]]></content>
+  </entry>
+  
+</feed>

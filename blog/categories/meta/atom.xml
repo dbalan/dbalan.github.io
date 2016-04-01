@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: meta | Binary Strolls]]></title>
+  <link href="http://dbalan.github.io/blog/categories/meta/atom.xml" rel="self"/>
+  <link href="http://dbalan.github.io/"/>
+  <updated>2016-04-01T11:56:26+05:30</updated>
+  <id>http://dbalan.github.io/</id>
+  <author>
+    <name><![CDATA[Dhananjay Balan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Static site generators]]></title>
+    <link href="http://dbalan.github.io/blog/2015/06/30/static-site-generators/"/>
+    <updated>2015-06-30T00:28:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2015/06/30/static-site-generators</id>
+    <content type="html"><![CDATA[<p>I use octopress with github hosting my pages.
+Everytime I sit down to write, I have to look up commands in my bash history and read documentation. Its very distracting when you just want to write.</p>
+
+<p>Maybe its my workflow thats wrong, I should replace all this with a set of small shell scripts :-P, maybe octopress 3.0 (insert another tool) will solve this.</p>
+
+<p>But at this point I dont even remember which branch in my repo has what, and I should switch to a firendlier paltform (ghost or posthaven) or do a massive cleanup ASAP.</p>
+
+<p><em>EDIT: I finally managed to do that clean up</em></p>
+]]></content>
+  </entry>
+  
+</feed>

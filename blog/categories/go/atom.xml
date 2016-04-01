@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: go | Binary Strolls]]></title>
+  <link href="http://dbalan.github.io/blog/categories/go/atom.xml" rel="self"/>
+  <link href="http://dbalan.github.io/"/>
+  <updated>2016-04-01T11:56:26+05:30</updated>
+  <id>http://dbalan.github.io/</id>
+  <author>
+    <name><![CDATA[Dhananjay Balan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[go: `:=` operator causes accidental shadowing]]></title>
+    <link href="http://dbalan.github.io/blog/2016/01/14/golang-shorthand-operator-allows-accidental-shadowing-of-variable/"/>
+    <updated>2016-01-14T21:13:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2016/01/14/golang-shorthand-operator-allows-accidental-shadowing-of-variable</id>
+    <content type="html"><![CDATA[<p>Go provides <code>:=</code> operator to make declaring variables easier. It is a <a href="https://golang.org/ref/spec#Short_variable_declarations">shorthand to declare and set a value of a variable</a>. for example,</p>
+
+<p><code>go
+var x int
+x = 42
+</code>
+can be written as</p>
+
+<p><code>go
+x := 42
+</code>
+But if not careful, this can accidently shadow variable bindings. Let&rsquo;s look at the fictitious piece of code.</p>
+
+<p>```go
+package main</p>
+
+<p>import &ldquo;fmt&rdquo;</p>
+
+<p>func fictitiousFunc() (int, error) {</p>
+
+<pre><code>return 42, nil
+</code></pre>
+
+<p>}</p>
+
+<p>func main() {</p>
+
+<pre><code>x := 10;
+x, err := fictitiousFunc()
+if err != nil {
+    fmt.Println("I'll never print")
+}
+fmt.Println("value of x: ", x)
+</code></pre>
+
+<p>}
+```
+This produces following output</p>
+
+<p><code>
+value of x:  42
+</code>
+While, this following piece of code will fail to compile</p>
+
+<p>```go
+package main</p>
+
+<p>import &ldquo;fmt&rdquo;</p>
+
+<p>func fictitiousFunc() (int, error) {</p>
+
+<pre><code>return 42, nil
+</code></pre>
+
+<p>}</p>
+
+<p>func main() {</p>
+
+<pre><code>x := 10
+// replace :=
+var x int
+var err error
+x, err = fictitiousFunc()
+if err != nil {
+    fmt.Println("I'll never print") 
+}
+fmt.Println("value of x: ", x)
+</code></pre>
+
+<p>}</p>
+
+<p><code>
+output:
+</code>
+prog.go:12: x redeclared in this block</p>
+
+<pre><code>previous declaration at prog.go:10
+</code></pre>
+
+<p>```
+So we can see that the operator is somewhat intelligent, and does not redeclare the variables.</p>
+
+<p>Now what if we push it down a scope? See the following code</p>
+
+<p>```go
+package main</p>
+
+<p>import &ldquo;fmt&rdquo;</p>
+
+<p>func fictitiousFunc() (int, error) {</p>
+
+<pre><code>return 42, nil
+</code></pre>
+
+<p>}</p>
+
+<p>func main() {</p>
+
+<pre><code>someCondition := true
+
+x := -1;
+
+if someCondition {
+    x, err := fictitiousFunc()
+
+    if err != nil {
+        fmt.Println("I'll never print")
+    }
+
+    fmt.Println("value of x inside: ", x)
+}
+
+fmt.Println("value x outside: ", x)
+</code></pre>
+
+<p>}
+```</p>
+
+<p>This produces,
+<code>go
+value of x inside:  42
+value x outside:  -1
+</code></p>
+
+<p>At line: 16, since the immediate scope (line:15-32) does not have variable <code>x</code> declared, <code>:=</code> is redeclaring the variable. a.k.a the <strong>variable <code>x</code> gets shadowed</strong>.</p>
+
+<p>Only workaround I can think of is not to use <code>:=</code>, i.e change the code to
+```go</p>
+
+<pre><code>if someCondition {
+    var err error
+    x, err = fictitiousFunc()
+
+    if err != nil {
+        fmt.Println("I'll never print")
+    }
+
+    fmt.Println("value of x inside: ", x)
+}
+</code></pre>
+
+<p>```</p>
+
+<p>If you know something better let me know.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: GNU/Linux | Binary Strolls]]></title>
+  <link href="http://dbalan.github.io/blog/categories/gnu-slash-linux/atom.xml" rel="self"/>
+  <link href="http://dbalan.github.io/"/>
+  <updated>2016-04-01T11:56:26+05:30</updated>
+  <id>http://dbalan.github.io/</id>
+  <author>
+    <name><![CDATA[Dhananjay Balan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Name your servers.]]></title>
+    <link href="http://dbalan.github.io/blog/2012/12/12/name-your-servers/"/>
+    <updated>2012-12-12T16:21:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2012/12/12/name-your-servers</id>
+    <content type="html"><![CDATA[<p>If your day involves ssh-ing into various servers, you know how
+cumbersome is to type all that details again and again. When the number
+becomes large, you tend to confuse between host names, IPs and
+usernames.</p>
+
+<p>But, ssh allows you to alias them into cute nicknames you prefer.</p>
+
+<p>The configuration file needed to be edited is  <code>~/.ssh/config.</code></p>
+
+<p>The sample configuration that should be append to this file for adding
+alias <em>server</em> to <code>user@example.org</code> is :</p>
+
+<p><code>
+Host server
+Hostname example.org
+User user
+</code></p>
+
+<p>Now all you have to do is
+<code>
+$ ssh server
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My perfect terminal]]></title>
+    <link href="http://dbalan.github.io/blog/2012/11/24/my-perfect-terminal/"/>
+    <updated>2012-11-24T11:14:19+05:30</updated>
+    <id>http://dbalan.github.io/blog/2012/11/24/my-perfect-terminal</id>
+    <content type="html"><![CDATA[<ol>
+<li> Install <a href="http://www.zsh.org/">ZSH</a></li>
+<li> Install <a href="https://github.com/robbyrussell/oh-my-zsh">Oh-my-zsh</a></li>
+<li> Install <a href="http://ethanschoonover.com/solarized">solarized</a> color theme <a href="https://github.com/sigurdga/gnome-terminal-colors-solarized"><del>for gnome-terminal</del></a>. Shifted to <a href="http://software.jessies.org/terminator/">Terminator</a> with a <a href="https://github.com/chriskempson/base16">base16</a> theme.</li>
+<li> Install a <a href="https://gist.github.com/1595572">powerline patched font</a>.</li>
+<li> Set the zsh theme to <a href="https://gist.github.com/3712874">agnoster</a>.</li>
+</ol>
+
+
+<p>Happy Hacking. :&ndash;)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FFmpeg + Nokia 7210 Video Clips.]]></title>
+    <link href="http://dbalan.github.io/blog/2011/10/11/ffmepg-nokia-7210-video-clips/"/>
+    <updated>2011-10-11T09:03:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2011/10/11/ffmepg-nokia-7210-video-clips</id>
+    <content type="html"><![CDATA[<p>Nokia 7210 supports video clips of container mp4 with following specifications.</p>
+
+<p> Video Codec: mpeg4
+Video Size: 320x240
+Bit Rate: 500
+Frame Rate: Auto
+Aspect: Auto
+Same Quality: False</p>
+
+<p> Audio:
+Audio Codec: mpeg4aac
+Bit Rate: 96
+Sample Rate: 44100
+Channels: 1 (Mono)
+Disable Audio: False</p>
+
+<p> So to make a clip playable in phone,</p>
+
+<p> Use</p>
+
+<p> <strong> ffmpeg -i <infile> -b 500 -s 320x240 -f mp4 -acodec libfaac -vcodec mpeg4 <outfile></strong></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: osx | Binary Strolls]]></title>
+  <link href="http://dbalan.github.io/blog/categories/osx/atom.xml" rel="self"/>
+  <link href="http://dbalan.github.io/"/>
+  <updated>2016-04-01T11:56:26+05:30</updated>
+  <id>http://dbalan.github.io/</id>
+  <author>
+    <name><![CDATA[Dhananjay Balan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[State of Terminal: 2015 Edition]]></title>
+    <link href="http://dbalan.github.io/blog/2015/03/28/state-of-terminal-2015-edition/"/>
+    <updated>2015-03-28T00:28:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2015/03/28/state-of-terminal-2015-edition</id>
+    <content type="html"><![CDATA[<p>I do this every year to keep track of the changes in my style. This is the first that goes public though</p>
+
+<ul>
+<li>I&rsquo;ve moved to a <strong>Macbook air 2013</strong> edition as my primary laptop (a work perk, thanks <a href="https://twitter.com/plivo.com">@plivo</a>).</li>
+<li><strong>Emacs</strong> is the primary editor &ndash; I use <a href="https://github.com/dimitri/el-get">el-get</a> to manage my emacs packages (my <code>init.el</code> is <a href="https://github.com/dbalan/.emacs.d/blob/master/init.el">hosted here</a>), I also use <a href="http://homepage.boetes.org/software/mg/"><code>mg</code></a> heavily while I&rsquo;m inside a terminal.</li>
+<li><strong>iTerm2</strong> for terminal. (My <a href="https://gist.github.com/dbalan/378d2f3e4e6a27f0aae8">cheetsheet for for iterm is availabe here</a>)</li>
+<li><strong>zsh</strong> for shell, with <a href="https://github.com/zsh-users/antigen">antigen</a> managing plugins and dependencies.</li>
+<li><strong>vagrant</strong> for VMs, I tried using <code>docker</code> with boot2docker, but my needs are diffrent. I just need a linux box that runs all the time.</li>
+<li><a href="http://spectacleapp.com/"><strong>Spectacle</strong></a> to manage windows. (Yes, I do miss Xmonad and i3)</li>
+<li><strong>Firefox</strong> is the primary browser, sometimes <strong>chromium</strong> running for some special sites and tasks.</li>
+<li><strong>Todoist</strong> is a great app to track todo lists, and the concept of  gaming the task completion frequency and awarding points is a joy!</li>
+<li><strong>Evernote</strong> everything goes inside this.</li>
+<li><strong>KeePassX</strong> manages all my passwords.</li>
+<li><strong>Tarsnap</strong> for backups, nuff said.</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Syslog on Mac OS X: Cheat Sheet]]></title>
+    <link href="http://dbalan.github.io/blog/2015/02/21/syslog-on-mac-os-x-cheat-sheet/"/>
+    <updated>2015-02-21T00:41:00+05:30</updated>
+    <id>http://dbalan.github.io/blog/2015/02/21/syslog-on-mac-os-x-cheat-sheet</id>
+    <content type="html"><![CDATA[<p>This is a quick cheatsheet to work with <a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/syslog.1.html"><code>syslog(1)</code></a> implementation OS X uses.</p>
+
+<p><code>Console.app</code> provides a nice UI to access logs in mac, you can do some basic filtering and search, but its limited in terms of raw control a terminal gives you.</p>
+
+<p><code>/usr/bin/syslog</code> can be used to both send and receive logs. Alternatively <a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/logger.1.html"><code>logger(1)</code></a> can be used to send logs to syslog.</p>
+
+<h2>Print logs from a specific facilitiy</h2>
+
+<p>```bash</p>
+
+<h1>-w: similar to tailf</h1>
+
+<p>syslog -k Facility local1 -w
+```</p>
+
+<h2>Sending logs</h2>
+
+<p>```bash</p>
+
+<h1>-l severity level</h1>
+
+<p>syslog -s &ldquo;message&rdquo;
+```</p>
+
+<h2>Sending logs upstream to another syslog server</h2>
+
+<p>Syslog can forward your logs too. The configuration resides in <code>/etc/syslog.conf</code>. You can append forwarding rules in this file, format is
+```</p>
+
+<h1>Tab separated</h1>
+
+<p>Facility.Level    @IPADDR:PORT
+<code>
+After this reload syslog daemon.
+</code>
+sudo launchctl unload /System/Library/LaunchDaemons/com.apple.syslogd.plist
+sudo launchctl load /System/Library/LaunchDaemons/com.apple.syslogd.plistp
+```</p>
+
+<h1>Extra reading</h1>
+
+<ol>
+<li><a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man5/asl.conf.5.html"><code>asl.conf(5)</code></a> &ndash; Configuration file for Apple Syslog Log (A syslog superset apple implements), this is where all the logic to route logs are set
+facility.level</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>
